@@ -6,7 +6,7 @@ Este proyecto permite visualizar de manera interactiva como se comparan la distr
 
 1. **Accede a la página**: Puedes abrir la visualización interactiva directamente desde este enlace:  
 
-   [Distribuciones Discretas Interactivas](https://stevenggoni.github.io/normal-vs-t-student/)
+   [Comparación entre la distribución normal estándar y la t-student](https://stevenggoni.github.io/normal-vs-t-student/)
 
 4. **Ajusta los grados de libertad**: Usa los deslizadores para modificar los grados de libertad y observa cómo cambia la distribución en tiempo real.
 
