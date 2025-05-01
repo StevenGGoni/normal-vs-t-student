@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Comparación: Normal Estándar vs t-Student</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstat/1.9.4/jstat.min.js"></script>
+</head>
+<body>
+  <h1>Comparación: Normal estándar vs t-Student</h1>
+
+  <label>
+    Grados de libertad (n):
+    <input type="range" id="n" min="1" max="100" value="10" step="1"
+      oninput="updatePlot(); document.getElementById('n-val').textContent = this.value;">
+    <span id="n-val">10</span>
+  </label>
+
+  <div id="plot" style="width: 100%; height: 500px;"></div>
+
+  <script>
+    function updatePlot() {
+      const n = parseInt(document.getElementById("n").value);
+      let x = [], yNormal = [], yT = [];
+
+      for (let i = -5; i <= 5; i += 0.1) {
+        x.push(i);
+        yNormal.push(jStat.normal.pdf(i, 0, 1));
+        yT.push(jStat.studentt.pdf(i, n));
+      }
+
+      const normalTrace = {
+        x: x,
+        y: yNormal,
+        type: "scatter",
+        mode: "lines",
+        name: "Normal estándar",
+        line: { color: "blue" }
+      };
+
+      const tTrace = {
+        x: x,
+        y: yT,
+        type: "scatter",
+        mode: "lines",
+        name: `t-Student (n=${n})`,
+        line: { color: "red", dash: "dot" }
+      };
+
+      Plotly.newPlot("plot", [normalTrace, tTrace], {
+        title: "Comparación de curvas",
+        xaxis: { title: "x" },
+        yaxis: { title: "Densidad" },
+        legend: { x: 0.1, y: 0.9 }
+      });
+    }
+
+    window.onload = function() {
+      updatePlot();
+    };
+  </script>
+
+  <footer style="margin-top: 2em; font-size: 0.9em; text-align: center; color: gray;">
+    Creado por Ing. Steven García Goñi · Para la Cátedra de II-0306 Probabilidad y Estadística, de la Escuela de Ingeniería Industrial de la Universidad de Costa Rica · Abril 2025
+  </footer>
+
+</body>
+</html>
+
